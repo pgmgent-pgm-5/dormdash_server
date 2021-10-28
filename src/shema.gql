@@ -1,0 +1,85 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Menu {
+  id: Int!
+  name: String!
+  description: String!
+  picture: String!
+  price: Float!
+  quantity: Int!
+  restaurantId: Int!
+  restaurant: Restaurant!
+}
+
+type Restaurant {
+  id: Int!
+  categoryId: Int!
+  name: String!
+  description: String!
+  logo: String!
+  picture: String!
+  street: String!
+  streetnumber: Float!
+  postalcode: Float!
+  city: String!
+  province: String!
+  delivery_time: String!
+  delivery_times: String!
+  menus: [Menu!]
+}
+
+type Query {
+  getMenu(id: Int!): Menu!
+  menus: [Menu!]!
+  restaurants: [Restaurant!]!
+  restaurant(id: Int!): Restaurant!
+}
+
+type Mutation {
+  createMenu(createMenuInput: CreateMenuInput!): Menu!
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  removeRestaurant(id: Int!): Restaurant!
+}
+
+input CreateMenuInput {
+  restaurantId: Int!
+  name: String!
+  description: String!
+  picture: String!
+  price: Float!
+  quantity: Int!
+}
+
+input CreateRestaurantInput {
+  name: String!
+  categoryId: Int!
+  description: String!
+  logo: String!
+  picture: String!
+  street: String!
+  streetnumber: Float!
+  postalcode: Float!
+  city: String!
+  province: String!
+  delivery_time: String!
+  delivery_times: String!
+}
+
+input UpdateRestaurantInput {
+  id: Float!
+  name: String!
+  categoryId: Int!
+  description: String!
+  logo: String!
+  picture: String!
+  street: String!
+  streetnumber: Float!
+  postalcode: Float!
+  city: String!
+  province: String!
+  delivery_time: String!
+  delivery_times: String!
+}
