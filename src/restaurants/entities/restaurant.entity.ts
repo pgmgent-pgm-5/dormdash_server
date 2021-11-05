@@ -1,6 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Category } from 'src/categories/entities/category.entity';
 import { Menu } from 'src/menus/menu.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Review } from 'src/reviews/entities/review.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -8,6 +11,10 @@ export class Restaurant {
   @PrimaryGeneratedColumn()
   @Field(type => Int)
   id: number;
+
+  @Column()
+  @Field(type => Int)
+  userId: number;
 
   @Column()
   @Field(type => Int)
@@ -34,12 +41,12 @@ export class Restaurant {
   street: string;
 
   @Column()
-  @Field()
+  @Field(type => Int)
   streetnumber: number;
 
   @Column()
   @Field()
-  postalcode: number;
+  postalcode: string;
 
   @Column()
   @Field()
@@ -50,15 +57,26 @@ export class Restaurant {
   province: string;
 
   @Column()
-  @Field()
-  delivery_time: string;
+  @Field(type => Int)
+  deliveryTime: number;
 
   @Column()
   @Field()
-  delivery_times: string;
+  deliveryTimes: string;
 
   @OneToMany(() => Menu, menu => menu.restaurant)
   @Field(type => [Menu], { nullable: true})
   menus?: Menu[];
-  
+
+  @OneToMany(() => Review, review => review.restaurant)
+  @Field(type => [Review], { nullable: true})
+  reviews?: Review[];
+
+  @ManyToOne(() => Category, category => category.restaurants)
+  @Field(type => Category)
+  category: Category;
+
+  @OneToOne(() => User, user => user.restaurant)
+  @JoinColumn()
+  user: User;
 }

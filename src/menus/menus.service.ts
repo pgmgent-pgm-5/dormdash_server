@@ -4,11 +4,14 @@ import { Restaurant } from 'src/restaurants/entities/restaurant.entity';
 import { RestaurantsService } from 'src/restaurants/restaurants.service';
 import { Repository } from 'typeorm';
 import { CreateMenuInput } from './dto/create-menu.input';
+import { UpdateMenuInput } from './dto/update-menu.input';
 import { Menu } from './menu.entity';
 
 @Injectable()
 export class MenusService {
   constructor(@InjectRepository(Menu) private menusRepository: Repository<Menu>, private restaurantsService: RestaurantsService){}
+
+  // constructor(@InjectRepository(Menu) private menusRepository: Repository<Menu>){}
   
   createMenu(createMenuInput: CreateMenuInput): Promise<Menu> {
     const newMenu = this.menusRepository.create(createMenuInput); // newMenu = new Menu(); new.name = input.name
@@ -35,8 +38,26 @@ export class MenusService {
     return this.menusRepository.findOneOrFail(id);
   }
 
-  getRestaurant(restaurantId: number):Promise<Restaurant> {
-    return this.restaurantsService.findOne(restaurantId);
+  findAllByRestaurant(restaurantId: number): Promise<Menu[]> {
+    return this.menusRepository.find({restaurantId: restaurantId });
+  }
+
+  // getRestaurant(restaurantId: number):Promise<Restaurant> {
+  //   return this.restaurantsService.findOne(restaurantId);
+  // }
+
+  async update(id: number, updateMenuInput: UpdateMenuInput) {
+    const updatedMenu = await this.menusRepository.preload({
+      id: id,
+      ...updateMenuInput,
+    });
+
+    return this.menusRepository.save(updatedMenu);
+  }
+
+  async remove(id: number) {
+    const menu = await this.findOne(id);
+    return this.menusRepository.remove(menu);
   }
 
 }

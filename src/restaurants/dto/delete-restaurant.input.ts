@@ -1,9 +1,11 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsPositive, IsInt } from 'class-validator';
 
 @InputType()
 export class DeleteRestaurantInput {
   @Field()
   @IsNotEmpty()
-  userId: number;
+  @IsPositive()
+  @IsInt()
+  id: number;
 }
