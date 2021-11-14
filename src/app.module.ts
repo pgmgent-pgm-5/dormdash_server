@@ -22,7 +22,7 @@ const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `${process.cwd()}/env${nodeEnvironment}.env`,
+      envFilePath: `${process.cwd()}/env/${nodeEnvironment}.env`,
       isGlobal:true,
     }),
     GraphQLModule.forRoot({

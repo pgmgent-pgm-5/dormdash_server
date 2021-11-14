@@ -6,12 +6,18 @@ import { Repository } from 'typeorm';
 import { CreateRestaurantInput } from './dto/create-restaurant.input';
 import { UpdateRestaurantInput } from './dto/update-restaurant.input';
 import { Restaurant } from './entities/restaurant.entity';
+import { Category } from 'src/categories/entities/category.entity';
+import { CategoriesService } from 'src/categories/categories.service';
+import { ReviewsService } from 'src/reviews/reviews.service';
+import { Review } from 'src/reviews/entities/review.entity';
 
 @Injectable()
 export class RestaurantsService {
   constructor(
     @InjectRepository(Restaurant) private restaurantsRepository: Repository<Restaurant>, 
-    private dishesService: DishesService
+    private dishesService: DishesService,
+    private categoriesService: CategoriesService,
+    private reviewsService: ReviewsService
   ) {}
   
   // constructor(@InjectRepository(Restaurant) private restaurantsRepository: Repository<Restaurant>){}
@@ -25,12 +31,32 @@ export class RestaurantsService {
     return this.restaurantsRepository.find();
   }
 
+  findAllByCategoryId(categoryId: number): Promise<Restaurant[]> {
+    return this.restaurantsRepository.find({categoryId});
+  }
+
+  findAllByCity(city: string): Promise<Restaurant[]> {
+    return this.restaurantsRepository.find({city});
+  }
+
+  findAllByCategoryAndCity(categoryId: number, city: string): Promise<Restaurant[]> {
+    return this.restaurantsRepository.find({city, categoryId});
+  }
+
   findOne(id: number) {
     return this.restaurantsRepository.findOneOrFail(id);
   }
 
   getRestaurantsDishes(restaurantId: number): Promise<Dish[]> {
     return this.dishesService.findAllByRestaurant(restaurantId);
+  }
+
+  getRestaurantsReviews(restaurantId: number): Promise<Review[]> {
+    return this.reviewsService.findAllByRestaurantId(restaurantId);
+  }
+
+  getRestaurantCategory(categoryId: number): Promise<Category> {
+    return this.categoriesService.findOne(categoryId);
   }
 
   async update(id: number, updateRestaurantInput: UpdateRestaurantInput) {

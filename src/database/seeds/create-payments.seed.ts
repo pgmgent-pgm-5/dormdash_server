@@ -5,6 +5,6 @@ import { Factory, Seeder } from "typeorm-seeding";
 
 export default class CreatePayments implements Seeder {
   public async run(factory: Factory, connection: Connection): Promise<any> {
-    await factory(Payment)().createMany(15);
+    await factory(Payment)().createMany(30);
   }
 }

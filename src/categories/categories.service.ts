@@ -23,6 +23,10 @@ export class CategoriesService {
     return this.categoriesRepository.findOneOrFail(id);
   }
 
+  // findOneByRestaurant(id: number):Promise<Category> {
+  //   return this.categoriesRepository.findOneOrFail({ restaurantId });
+  // }
+
   async update(id: number, updateCategoryInput: UpdateCategoryInput):Promise<Category> {
     const updatedCategory = await this.categoriesRepository.preload({
       id: id,

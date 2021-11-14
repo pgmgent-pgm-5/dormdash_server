@@ -4,6 +4,6 @@ import { Factory, Seeder } from "typeorm-seeding";
 
 export default class CreateRestaurants implements Seeder {
   public async run(factory: Factory, connection: Connection): Promise<any> {
-    await factory(Restaurant)().createMany(15);
+    await factory(Restaurant)().createMany(100);
   }
 }

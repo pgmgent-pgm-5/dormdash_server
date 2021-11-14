@@ -18,6 +18,10 @@ export class ReviewsService {
     return this.reviewsRepository.find();
   }
 
+  findAllByRestaurantId(restaurantId: number): Promise<Review[]> {
+    return this.reviewsRepository.find({restaurantId});
+  }
+
   findOne(id: number):Promise<Review> {
     return this.reviewsRepository.findOneOrFail(id);
   }

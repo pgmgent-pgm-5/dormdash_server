@@ -3,9 +3,6 @@ import * as Faker from 'faker';
 import { Restaurant } from "src/restaurants/entities/restaurant.entity";
 import { User } from "src/users/entities/user.entity";
 
-
-const roles = ['student', 'admin', 'restaurant', 'driver'];
-
 define(Restaurant, (faker: typeof Faker) => { 
   const restaurant = new Restaurant();
   restaurant.userId = factory(User)() as any;

@@ -6,7 +6,7 @@ import { define } from "typeorm-seeding";
 
 define(Dish, (faker: typeof Faker) => {
   const dish = new Dish();
-  dish.restaurantId = faker.random.number({min: 1, max:30});
+  dish.restaurantId = faker.random.number({min: 1, max:100});
   dish.name = faker.commerce.productName();
   dish.description = faker.lorem.paragraph();
   dish.picture = faker.image.food();

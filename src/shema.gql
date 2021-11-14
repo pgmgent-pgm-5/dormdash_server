@@ -166,6 +166,7 @@ type Query {
   payments: [Payment!]!
   restaurant(id: Int!): Restaurant!
   restaurants: [Restaurant!]!
+  restaurantsByCategoryAndCity(city: String!): [Restaurant!]!
   review(id: Int!): Review!
   reviews: [Review!]!
   user(id: Int!): User!
