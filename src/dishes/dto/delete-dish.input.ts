@@ -2,7 +2,7 @@ import { InputType, Field } from '@nestjs/graphql';
 import { IsNotEmpty, IsPositive, IsInt } from 'class-validator';
 
 @InputType()
-export class DeleteMenuInput {
+export class DeleteDishInput {
   @Field()
   @IsNotEmpty()
   @IsPositive()

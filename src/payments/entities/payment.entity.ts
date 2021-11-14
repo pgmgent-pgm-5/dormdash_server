@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { Order } from 'src/orders/entities/order.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -22,9 +22,9 @@ export class Payment {
   @Field()
   paymentType: string;
 
-  @Column()
-  @Field()
-  amount: string;
+  @Column({type: 'decimal', precision: 5, scale:2, default: 0})
+  @Field(type => Float)
+  price: number;
 
   @Column()
   @Field()

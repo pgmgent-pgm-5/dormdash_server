@@ -2,7 +2,7 @@ import { Field, InputType, Int, Float } from "@nestjs/graphql";
 import { IsAlpha, IsAlphanumeric, IsInt, IsNotEmpty, IsNumber, IsPositive, Min, Max, IsString, IsCurrency } from "class-validator";
 
 @InputType()
-export class CreateMenuInput {
+export class CreateDishInput {
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
@@ -26,7 +26,7 @@ export class CreateMenuInput {
   @IsNotEmpty()
   @IsPositive()
   @Min(0.5)
-  @Max(1000)
+  @Max(999)
   @IsNumber()
   // @IsCurrency()
   @Field(type => Float)

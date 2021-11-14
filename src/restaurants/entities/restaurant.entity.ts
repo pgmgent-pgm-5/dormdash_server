@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Category } from 'src/categories/entities/category.entity';
-import { Menu } from 'src/menus/menu.entity';
+import { Dish } from 'src/dishes/entities/dish.entity';
 import { Review } from 'src/reviews/entities/review.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -64,11 +64,11 @@ export class Restaurant {
   @Field()
   deliveryTimes: string;
 
-  @OneToMany(() => Menu, menu => menu.restaurant)
-  @Field(type => [Menu], { nullable: true})
-  menus?: Menu[];
+  @OneToMany(() => Dish, dish => dish.restaurant)
+  @Field(type => [Dish], { nullable: true})
+  dishes?: Dish[];
 
-  @OneToMany(() => Review, review => review.restaurant)
+  @OneToMany(() => Review, review => review.restaurant, {eager: true, cascade:true })
   @Field(type => [Review], { nullable: true})
   reviews?: Review[];
 

@@ -20,7 +20,8 @@ export class CreateUserInput {
   email: string;
 
   @IsNotEmpty()
-  @IsJWT()
+  @IsString()
+  // @IsJWT()
   @Field()
   password: string;
 

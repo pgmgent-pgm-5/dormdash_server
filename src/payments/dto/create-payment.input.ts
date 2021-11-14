@@ -23,7 +23,7 @@ export class CreatePaymentInput {
   @IsNotEmpty()
   // @IsCurrency()
   @Min(0.5)
-  @Max(1000)
+  @Max(999)
   @Field(type => Float)
   price: number;
  

@@ -1,9 +1,9 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { Driver } from 'src/drivers/entities/driver.entity';
-import { Menu } from 'src/menus/menu.entity';
+import { Dish } from 'src/dishes/entities/dish.entity';
 import { Payment } from 'src/payments/entities/payment.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
@@ -18,6 +18,10 @@ export class Order {
 
   @Column()
   @Field(type => Int)
+  driverId: number;
+
+  @Column()
+  @Field(type => Int)
   orderNumber: number;
 
   @Column()
@@ -28,11 +32,11 @@ export class Order {
   @Field()
   deliveryState: string;
 
-  @Column({ type: "float"})
+  @Column({type: 'decimal', precision: 5, scale:2, default: 0})
   @Field(type => Float)
   deliveryFee: number;
 
-  @Column({ type: "float"})
+  @Column({type: 'decimal', precision: 5, scale:2, default: 0})
   @Field(type => Float)
   totalPrice: number;
 
@@ -63,11 +67,26 @@ export class Order {
   @Field(type => User)
   user: User;
 
-  @OneToOne(() => Driver, driver => driver.order)
-  @JoinColumn()
-  driver: Driver;
+  @OneToMany(() => Driver, driver => driver.order)
+  @Field(type => [Driver])
+  drivers: Driver[];
 
-  @ManyToMany(() => Menu, menu => menu.orders)
-  @JoinTable()
-  menus: Menu[];
+  @ManyToMany(
+    () => Dish, 
+    (dish: Dish) => dish.orders,
+    { eager: true },
+  )
+  @JoinTable({
+    name: 'orders_has_dishes',
+    joinColumn: {
+      name: 'order_id',
+      referencedColumnName: 'id' 
+    },
+    inverseJoinColumn: {
+      name: 'dish_id',
+      referencedColumnName: 'id',
+    },
+  })
+  @Field(() => [Dish])
+  dishes: Dish[];
 }

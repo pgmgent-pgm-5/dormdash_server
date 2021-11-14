@@ -11,8 +11,12 @@ export class OrdersService {
 
   create(createOrderInput: CreateOrderInput):Promise<Order> {
     const newOrder = this.ordersRepository.create(createOrderInput); 
+    const fullOrder = {
+      ...newOrder,
+      dishes: createOrderInput.selectedDishes,
+    };
 
-    return this.ordersRepository.save(newOrder);  // insert 
+    return this.ordersRepository.save(fullOrder);  // insert 
   }
 
   findAll():Promise<Order[]> {

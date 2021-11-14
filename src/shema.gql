@@ -8,282 +8,286 @@ type Category {
   restaurants: [Restaurant!]
 }
 
-type Driver {
-  id: Int!
-  available: Boolean!
-}
-
-type User {
-  id: Int!
-  firstName: String!
-  lastName: String!
-  email: String!
-  password: String!
-  phone: String
-  picture: String
-  role: String!
-  payments: [Payment!]
-  orders: [Order!]
-}
-
-type Payment {
-  id: Int!
-  userId: Int!
-  orderId: Int!
-  paymentType: String!
-  amount: String!
-  paidDate: DateTime!
-  user: User!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
-type Order {
-  id: Int!
-  userId: Int!
-  orderNumber: Int!
-  orderState: String!
-  deliveryState: String!
-  deliveryFee: Float!
-  totalPrice: Float!
-  street: String!
-  streetnumber: Int!
-  postalcode: String!
-  city: String!
-  province: String!
-  user: User!
-}
-
-type Menu {
-  id: Int!
-  name: String!
-  description: String!
-  picture: String!
-  price: Float!
-  quantity: Int!
-  restaurantId: Int!
-  restaurant: Restaurant!
-}
-
-type Review {
-  id: Int!
-  rating: Int!
-  title: String!
-  description: String!
-  date: DateTime!
-  restaurantId: Float!
-  restaurant: [Restaurant!]
-}
-
-type Restaurant {
-  id: Int!
-  userId: Int!
-  categoryId: Int!
-  name: String!
-  description: String!
-  logo: String!
-  picture: String!
-  street: String!
-  streetnumber: Int!
-  postalcode: String!
-  city: String!
-  province: String!
-  deliveryTime: Int!
-  deliveryTimes: String!
-  menus: [Menu!]
-  reviews: [Review!]
-  category: Category!
-}
-
-type Query {
-  getMenu(id: Int!): Menu!
-  menus: [Menu!]!
-  menusByRestaurant(restaurantId: Int!): [Menu!]!
-  restaurants: [Restaurant!]!
-  restaurant(id: Int!): Restaurant!
-  reviews: [Review!]!
-  review(id: Int!): Review!
-  categories: [Category!]!
-  category(id: Int!): Category!
-  users: [User!]!
-  user(id: Int!): User!
-  payments: [Payment!]!
-  payment(id: Int!): Payment!
-  orders: [Order!]!
-  order(id: Int!): Order!
-  drivers: [Driver!]!
-  driver(id: Int!): Driver!
-}
-
-type Mutation {
-  createMenu(createMenuInput: CreateMenuInput!): Menu!
-  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
-  removeMenu(id: Int!): Menu!
-  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
-  removeRestaurant(id: Int!): Restaurant!
-  createReview(createReviewInput: CreateReviewInput!): Review!
-  updateReview(updateReviewInput: UpdateReviewInput!): Review!
-  removeReview(id: Int!): Review!
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
-  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  removeCategory(id: Int!): Category!
-  createUser(createUserInput: CreateUserInput!): User!
-  updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): User!
-  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
-  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
-  removePayment(id: Int!): Payment!
-  createOrder(createOrderInput: CreateOrderInput!): Order!
-  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
-  removeOrder(id: Int!): Order!
-  createDriver(createDriverInput: CreateDriverInput!): Driver!
-  updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
-  removeDriver(id: Int!): Driver!
-}
-
-input CreateMenuInput {
-  restaurantId: Int!
-  name: String!
-  description: String!
-  picture: String!
-  price: Float!
-  quantity: Int!
-}
-
-input UpdateRestaurantInput {
-  userId: Int!
-  categoryId: Int!
-  name: String!
-  description: String!
-  logo: String!
-  picture: String!
-  street: String!
-  streetnumber: Float!
-  postalcode: String!
-  city: String!
-  province: String!
-  deliveryTime: Float!
-  deliveryTimes: String!
-  id: Float!
-}
-
-input CreateRestaurantInput {
-  userId: Int!
-  categoryId: Int!
-  name: String!
-  description: String!
-  logo: String!
-  picture: String!
-  street: String!
-  streetnumber: Float!
-  postalcode: String!
-  city: String!
-  province: String!
-  deliveryTime: Float!
-  deliveryTimes: String!
-}
-
-input CreateReviewInput {
-  restaurantId: Int!
-  rating: Int!
-  title: String!
-  description: String!
-  date: DateTime!
-}
-
-input UpdateReviewInput {
-  restaurantId: Int
-  rating: Int
-  title: String
-  description: String
-  date: DateTime
-  id: Float!
-}
-
 input CreateCategoryInput {
   name: String!
 }
 
-input UpdateCategoryInput {
-  name: String
-  id: Float!
-}
-
-input CreateUserInput {
-  firstName: String!
-  lastName: String!
-  email: String!
-  password: String!
-  phone: String
-  picture: String
-  role: String!
-}
-
-input UpdateUserInput {
-  firstName: String
-  lastName: String
-  email: String
-  password: String
-  phone: String
-  picture: String
-  role: String
-  id: Float!
-}
-
-input CreatePaymentInput {
-  userId: Int!
-  orderId: Int!
-  payment_type: String!
+input CreateDishInput {
+  description: String!
+  name: String!
+  picture: String!
   price: Float!
-  paidDate: DateTime!
-}
-
-input UpdatePaymentInput {
-  userId: Int
-  orderId: Int
-  payment_type: String
-  price: Float
-  paidDate: DateTime
-  id: Float!
-}
-
-input CreateOrderInput {
-  userId: Int!
-  orderNumber: Float!
-  orderState: String!
-  deliveryState: String!
-  deliveryFee: Float!
-  totalPrice: Float!
-  street: String!
-  streetnumber: Float!
-  postalcode: String!
-  city: String!
-  province: String!
-}
-
-input UpdateOrderInput {
-  userId: Int
-  orderNumber: Float
-  orderState: String
-  deliveryState: String
-  deliveryFee: Float
-  totalPrice: Float
-  street: String
-  streetnumber: Float
-  postalcode: String
-  city: String
-  province: String
-  id: Float!
+  quantity: Int!
+  restaurantId: Int!
 }
 
 input CreateDriverInput {
   available: Boolean!
 }
 
+input CreateOrderInput {
+  city: String!
+  deliveryFee: Float!
+  deliveryState: String!
+  orderNumber: Float!
+  orderState: String!
+  postalcode: String!
+  province: String!
+  street: String!
+  streetnumber: Float!
+  totalPrice: Float!
+  userId: Int!
+}
+
+input CreatePaymentInput {
+  orderId: Int!
+  paidDate: Timestamp!
+  payment_type: String!
+  price: Float!
+  userId: Int!
+}
+
+input CreateRestaurantInput {
+  categoryId: Int!
+  city: String!
+  deliveryTime: Float!
+  deliveryTimes: String!
+  description: String!
+  logo: String!
+  name: String!
+  picture: String!
+  postalcode: String!
+  province: String!
+  street: String!
+  streetnumber: Float!
+  userId: Int!
+}
+
+input CreateReviewInput {
+  date: Timestamp!
+  description: String!
+  rating: Int!
+  restaurantId: Int!
+  title: String!
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  phone: String
+  picture: String
+  role: String!
+}
+
+type Dish {
+  description: String!
+  id: Int!
+  name: String!
+  picture: String!
+  price: Float!
+  quantity: Int!
+  restaurant: Restaurant!
+  restaurantId: Int!
+}
+
+type Driver {
+  available: Boolean!
+  id: Int!
+  order: Order!
+}
+
+type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createDish(createDishInput: CreateDishInput!): Dish!
+  createDriver(createDriverInput: CreateDriverInput!): Driver!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  createPayment(createPaymentInput: CreatePaymentInput!): Payment!
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  createUser(createUserInput: CreateUserInput!): User!
+  removeCategory(id: Int!): Category!
+  removeDish(id: Int!): Dish!
+  removeDriver(id: Int!): Driver!
+  removeOrder(id: Int!): Order!
+  removePayment(id: Int!): Payment!
+  removeRestaurant(id: Int!): Restaurant!
+  removeReview(id: Int!): Review!
+  removeUser(id: Int!): User!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Order {
+  city: String!
+  deliveryFee: Float!
+  deliveryState: String!
+  dishes: [Dish!]!
+  driverId: Int!
+  drivers: [Driver!]!
+  id: Int!
+  orderNumber: Int!
+  orderState: String!
+  postalcode: String!
+  province: String!
+  street: String!
+  streetnumber: Int!
+  totalPrice: Float!
+  user: User!
+  userId: Int!
+}
+
+type Payment {
+  id: Int!
+  orderId: Int!
+  paidDate: Timestamp!
+  paymentType: String!
+  price: Float!
+  user: User!
+  userId: Int!
+}
+
+type Query {
+  categories: [Category!]!
+  category(id: Int!): Category!
+  dishes: [Dish!]!
+  driver(id: Int!): Driver!
+  drivers: [Driver!]!
+  getDish(id: Int!): Dish!
+  order(id: Int!): Order!
+  orders: [Order!]!
+  payment(id: Int!): Payment!
+  payments: [Payment!]!
+  restaurant(id: Int!): Restaurant!
+  restaurants: [Restaurant!]!
+  review(id: Int!): Review!
+  reviews: [Review!]!
+  user(id: Int!): User!
+  userByEmail(email: String!): User!
+  users: [User!]!
+}
+
+type Restaurant {
+  category: Category!
+  categoryId: Int!
+  city: String!
+  deliveryTime: Int!
+  deliveryTimes: String!
+  description: String!
+  dishes: [Dish!]
+  id: Int!
+  logo: String!
+  name: String!
+  picture: String!
+  postalcode: String!
+  province: String!
+  reviews: [Review!]
+  street: String!
+  streetnumber: Int!
+  userId: Int!
+}
+
+type Review {
+  date: Timestamp!
+  description: String!
+  id: Int!
+  rating: Int!
+  restaurant: [Restaurant!]
+  restaurantId: Float!
+  title: String!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+input UpdateCategoryInput {
+  id: Float!
+  name: String
+}
+
 input UpdateDriverInput {
   available: Boolean
   id: Float!
+}
+
+input UpdateOrderInput {
+  city: String
+  deliveryFee: Float
+  deliveryState: String
+  id: Float!
+  orderNumber: Float
+  orderState: String
+  postalcode: String
+  province: String
+  street: String
+  streetnumber: Float
+  totalPrice: Float
+  userId: Int
+}
+
+input UpdatePaymentInput {
+  id: Float!
+  orderId: Int
+  paidDate: Timestamp
+  payment_type: String
+  price: Float
+  userId: Int
+}
+
+input UpdateRestaurantInput {
+  categoryId: Int!
+  city: String!
+  deliveryTime: Float!
+  deliveryTimes: String!
+  description: String!
+  id: Float!
+  logo: String!
+  name: String!
+  picture: String!
+  postalcode: String!
+  province: String!
+  street: String!
+  streetnumber: Float!
+  userId: Int!
+}
+
+input UpdateReviewInput {
+  date: Timestamp
+  description: String
+  id: Float!
+  rating: Int
+  restaurantId: Int
+  title: String
+}
+
+input UpdateUserInput {
+  email: String
+  firstName: String
+  id: Float!
+  lastName: String
+  password: String
+  phone: String
+  picture: String
+  role: String
+}
+
+type User {
+  email: String!
+  firstName: String!
+  id: Int!
+  lastName: String!
+  orders: [Order!]
+  password: String!
+  payments: [Payment!]
+  phone: String
+  picture: String
+  role: String!
 }

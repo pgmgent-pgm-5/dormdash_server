@@ -5,7 +5,7 @@ import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "t
 
 @Entity()
 @ObjectType()
-export class Menu {
+export class Dish {
   @PrimaryGeneratedColumn()
   @Field(type => Int)
   id: number;
@@ -22,7 +22,7 @@ export class Menu {
   @Field()
   picture: string;
 
-  @Column({ type: "float"}) // int or string --> not needed 
+  @Column({ type: 'decimal', precision: 5, scale:2, default: 0}) // type {type: 'float' } can also | int or string --> not needed 
   @Field(type => Float)
   price: number;
 
@@ -34,11 +34,11 @@ export class Menu {
   @Field(type => Int)
   restaurantId: number;
 
-  @ManyToOne(() => Restaurant, restaurant => restaurant.menus)
+  @ManyToOne(() => Restaurant, restaurant => restaurant.dishes)
   @Field(type => Restaurant )
   restaurant: Restaurant;
 
-  @ManyToMany(() => Order, order => order.menus)
+  @ManyToMany(() => Order, order => order.dishes)
   orders: Order[];
 }
 

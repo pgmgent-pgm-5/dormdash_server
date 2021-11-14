@@ -19,6 +19,15 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    // console.log('emailservice', email);
+    // let user = await this.usersRepository.find({ where: { email: email }});
+    // console.log('useruserservice', user);
+    // const test = user[0];
+    // return test;
+    return this.usersRepository.findOne({ email });
+  }
+
   findOne(id: number):Promise<User> {
     return this.usersRepository.findOneOrFail(id);
   }
