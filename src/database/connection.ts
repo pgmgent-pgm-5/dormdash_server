@@ -2,7 +2,9 @@ import { ConnectionOptions } from 'typeorm';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
-const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()}`;
+const nodeEnvironment = `${(
+  process.env.NODE_ENV || 'development'
+).toLowerCase()}`;
 
 const typeormConfig: ConnectionOptions = {
   type: 'postgres',
@@ -10,7 +12,7 @@ const typeormConfig: ConnectionOptions = {
   port: 5432,
   username: 'jamsy',
   password: 'jamsy',
-  database: 'sybrendeboever',
+  database: 'dormdash',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true,
   logging: nodeEnvironment === 'development' ? true : false,
