@@ -37,7 +37,7 @@ export class DishesResolver {
   }
 
   @Mutation(() => Dish)
-  updateRestaurant(@Args('updateDishInput') updateDishInput: UpdateDishInput) {
+  updateDish(@Args('updateDishInput') updateDishInput: UpdateDishInput) {
     return this.dishesService.update(updateDishInput.id, updateDishInput);
   }
 

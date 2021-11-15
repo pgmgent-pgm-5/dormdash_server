@@ -116,6 +116,7 @@ type Mutation {
   removeReview(id: Int!): Review!
   removeUser(id: Int!): User!
   updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updateDish(updateDishInput: UpdateDishInput!): Dish!
   updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
   updateOrder(updateOrderInput: UpdateOrderInput!): Order!
   updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
@@ -213,6 +214,16 @@ scalar Timestamp
 input UpdateCategoryInput {
   id: Float!
   name: String
+}
+
+input UpdateDishInput {
+  description: String!
+  id: Int!
+  name: String!
+  picture: String!
+  price: Float!
+  quantity: Int!
+  restaurantId: Int!
 }
 
 input UpdateDriverInput {

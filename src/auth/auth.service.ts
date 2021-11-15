@@ -13,7 +13,7 @@ export class AuthService {
       
     if (user && user.password === password) {
       console.log('authservice', user);
-      const { password, email, ...rest } = user;
+      const { password, ...rest } = user;
       return rest;
     }
 
