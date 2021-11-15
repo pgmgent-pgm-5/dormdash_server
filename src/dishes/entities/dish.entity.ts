@@ -22,7 +22,7 @@ export class Dish {
   @Field()
   picture: string;
 
-  @Column({ type: 'decimal', precision: 5, scale:2, default: 0}) // type {type: 'float' } can also | int or string --> not needed 
+  @Column({ type: 'float'}) // type {type: 'float' } can also | int or string --> not needed 
   @Field(type => Float)
   price: number;
 

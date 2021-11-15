@@ -36,8 +36,9 @@ export class RestaurantsResolver {
     return this.restaurantsService.findAllByCity(city);
   }
 
-  @Query(() => Restaurant, { name: 'restaurant' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => Restaurant)
+  getRestaurantById(@Args('id', { type: () => Int }) id: number) {
+    console.log(id);
     return this.restaurantsService.findOne(id);
   }
 

@@ -86,7 +86,7 @@ type Dish {
   id: Int!
   name: String!
   picture: String!
-  price: Float!
+  price: Int!
   quantity: Int!
   restaurant: Restaurant!
   restaurantId: Int!
@@ -160,11 +160,11 @@ type Query {
   driver(id: Int!): Driver!
   drivers: [Driver!]!
   getDish(id: Int!): Dish!
+  getRestaurantById(id: Int!): Restaurant!
   order(id: Int!): Order!
   orders: [Order!]!
   payment(id: Int!): Payment!
   payments: [Payment!]!
-  restaurant(id: Int!): Restaurant!
   restaurants: [Restaurant!]!
   restaurantsByCategoryAndCity(city: String!): [Restaurant!]!
   review(id: Int!): Review!
