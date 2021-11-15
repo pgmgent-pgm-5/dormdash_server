@@ -31,9 +31,9 @@ export class RestaurantsResolver {
   }
 
 
-  @Query(() => [Restaurant], { name: 'restaurantsByCategoryAndCity' })
-  findAllByCity(@Args('city', {type: () => String}) city: string) {
-    return this.restaurantsService.findAllByCity(city);
+  @Query(() => [Restaurant], { name: 'restaurantsByProvince' })
+  findAllByCity(@Args('province', {type: () => String}) province: string) {
+    return this.restaurantsService.findAllByProvince(province);
   }
 
   @Query(() => Restaurant)

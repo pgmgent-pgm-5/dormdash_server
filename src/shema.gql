@@ -86,7 +86,7 @@ type Dish {
   id: Int!
   name: String!
   picture: String!
-  price: Int!
+  price: Float!
   quantity: Int!
   restaurant: Restaurant!
   restaurantId: Int!
@@ -166,7 +166,8 @@ type Query {
   payment(id: Int!): Payment!
   payments: [Payment!]!
   restaurants: [Restaurant!]!
-  restaurantsByCategoryAndCity(city: String!): [Restaurant!]!
+  restaurantsByCategoryAndCity(categoryId: Int!, city: String!): [Restaurant!]!
+  restaurantsByProvince(province: String!): [Restaurant!]!
   review(id: Int!): Review!
   reviews: [Review!]!
   user(id: Int!): User!
