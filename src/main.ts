@@ -21,12 +21,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
-  app.enableCors({
-    origin: 'https://dormdash.onrender.com/',
-    credentials: true,
-    allowedHeaders:
-      'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
-  });
+  //   app.enableCors({
+  //     origin: 'https://dormdash.onrender.com/',
+  //     credentials: true,
+  //     allowedHeaders:
+  //       'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+  //   });
 
   await app.listen(3000);
 }
