@@ -29,7 +29,8 @@ const nodeEnvironment = `${(
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/shema.gql'),
-      playground: nodeEnvironment === 'development' ? true : false,
+      //   playground: nodeEnvironment === 'development' ? true : false,
+      playground: true,
       introspection: nodeEnvironment === 'development' ? true : false,
       buildSchemaOptions: {
         dateScalarMode: 'timestamp',
