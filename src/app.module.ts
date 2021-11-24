@@ -17,13 +17,15 @@ import { AuthModule } from './auth/auth.module';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
-const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()}`;
+const nodeEnvironment = `${(
+  process.env.NODE_ENV || 'development'
+).toLowerCase()}`;
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: `${process.cwd()}/env/${nodeEnvironment}.env`,
-      isGlobal:true,
+      isGlobal: true,
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/shema.gql'),
@@ -45,11 +47,12 @@ const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        seeds: [ __dirname + '**/*.seed{.ts,.js}'],
+        seeds: [__dirname + '**/*.seed{.ts,.js}'],
         factories: [__dirname + '**/*.factory{.ts,.js}'],
         synchronize: true,
         logging: nodeEnvironment === 'development' ? true : false,
-        dropSchema: nodeEnvironment === 'test' ? true : false
+        dropSchema: nodeEnvironment === 'test' ? true : false,
+        ssl: true,
       }),
     }),
     DishesModule,
@@ -60,7 +63,8 @@ const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()
     PaymentsModule,
     OrdersModule,
     DriversModule,
-    AuthModule],
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
