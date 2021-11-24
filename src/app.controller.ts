@@ -11,12 +11,17 @@ export class AppController {
   @Post('login')
   login(@Request() req): any {
     console.log(req.user);
-    return {email: req.user.email, id: req.user.id};
+    return { email: req.user.email, id: req.user.id };
   }
 
   @UseGuards(AuthenticatedGuard)
   @Get('protected')
   getHello(@Request() req): string {
     return req.user;
+  }
+
+  @Get('/')
+  getHelloWorld(): string {
+    return 'hello world';
   }
 }

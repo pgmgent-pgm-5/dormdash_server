@@ -12,8 +12,8 @@ async function bootstrap() {
       secret: 'nest dormdash', // get env vars
       resave: false,
       saveUninitialized: false,
-      cookie: { maxAge: 360000},
-    })
+      cookie: { maxAge: 360000 },
+    }),
   );
 
   app.use(passport.initialize());
