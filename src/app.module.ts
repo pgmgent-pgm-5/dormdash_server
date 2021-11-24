@@ -31,7 +31,8 @@ const nodeEnvironment = `${(
       autoSchemaFile: join(process.cwd(), 'src/shema.gql'),
       //   playground: nodeEnvironment === 'development' ? true : false,
       playground: true,
-      introspection: nodeEnvironment === 'development' ? true : false,
+      //   introspection: nodeEnvironment === 'development' ? true : false,
+      introspection: true,
       buildSchemaOptions: {
         dateScalarMode: 'timestamp',
       },
