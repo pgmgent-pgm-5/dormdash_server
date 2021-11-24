@@ -19,14 +19,14 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.enableCors({
+    origin: 'https://dormdash.onrender.com',
+    credentials: true,
+    allowedHeaders:
+      'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+  });
 
-  //   app.enableCors({
-  //     origin: 'https://dormdash.onrender.com/',
-  //     credentials: true,
-  //     allowedHeaders:
-  //       'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
-  //   });
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(3000);
 }
