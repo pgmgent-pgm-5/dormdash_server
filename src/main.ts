@@ -20,10 +20,11 @@ async function bootstrap() {
   app.use(passport.session());
 
   app.enableCors({
-    origin: 'https://dormdash.onrender.com',
+    origin: true,
     credentials: true,
     allowedHeaders:
       'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
 
   app.useGlobalPipes(new ValidationPipe());

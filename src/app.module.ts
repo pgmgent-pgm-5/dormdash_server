@@ -38,7 +38,7 @@ const nodeEnvironment = `${(
       },
       sortSchema: true,
       cors: {
-        origin: 'https://dormdash.onrender.com',
+        origin: true,
         credentials: true,
       },
     }),
