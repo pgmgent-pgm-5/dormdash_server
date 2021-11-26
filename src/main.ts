@@ -19,13 +19,14 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.enableCors({
-    origin: true,
-    credentials: true,
-    allowedHeaders:
-      'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-  });
+  app.enableCors();
+  //       {
+  //     origin: true,
+  //     credentials: true,
+  //     allowedHeaders:
+  //       'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+  //     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  //   }
 
   app.useGlobalPipes(new ValidationPipe());
 

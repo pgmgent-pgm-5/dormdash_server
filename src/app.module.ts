@@ -37,10 +37,6 @@ const nodeEnvironment = `${(
         dateScalarMode: 'timestamp',
       },
       sortSchema: true,
-      cors: {
-        origin: true,
-        credentials: true,
-      },
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
