@@ -8,18 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'https://dormdash.onrender.com',
+    origin: '*',
     credentials: true,
-    allowedHeaders:
-      'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
-    methods: 'GET,PUT,POST,DELETE',
-  });
-
-  app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://dormdash.onrender.com');
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-    next();
+    // allowedHeaders:
+    //   'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+    // methods: 'GET,PUT,POST,DELETE',
   });
 
   app.use(
