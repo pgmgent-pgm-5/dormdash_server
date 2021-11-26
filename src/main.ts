@@ -7,14 +7,6 @@ import * as passport from 'passport';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors({
-    origin: '*',
-    credentials: true,
-    // allowedHeaders:
-    //   'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
-    // methods: 'GET,PUT,POST,DELETE',
-  });
-
   app.use(
     session({
       secret: 'nest dormdash', // get env vars
@@ -26,6 +18,13 @@ async function bootstrap() {
 
   app.use(passport.initialize());
   app.use(passport.session());
+
+  app.enableCors({
+    origin: 'https://dormdash.onrender.com',
+    credentials: true,
+    allowedHeaders:
+      'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',
+  });
 
   app.useGlobalPipes(new ValidationPipe());
 
