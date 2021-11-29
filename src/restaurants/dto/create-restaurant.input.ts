@@ -39,7 +39,7 @@ export class CreateRestaurantInput {
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
-  @Field()
+  @Field(type => Int)
   streetnumber: number;
 
   @IsNotEmpty()
@@ -59,7 +59,7 @@ export class CreateRestaurantInput {
 
   @IsNotEmpty()
   @IsInt()
-  @Field()
+  @Field(type => Int)
   deliveryTime: number;
 
   @IsNotEmpty()

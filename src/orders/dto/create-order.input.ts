@@ -10,6 +10,18 @@ export class CreateOrderInput {
   @IsPositive()
   @Field(type => Int)
   userId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  @IsPositive()
+  @Field(type => Int)
+  driverId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  @IsPositive()
+  @Field(type => Int)
+  restaurantId: number;
   
   @IsNotEmpty()
   @IsInt()

@@ -39,8 +39,8 @@ export class RestaurantsService {
     return this.restaurantsRepository.find({province});
   }
 
-  findAllByCategoryAndCity(categoryId: number, city: string): Promise<Restaurant[]> {
-    return this.restaurantsRepository.find({city, categoryId});
+  findAllByCategoryAndCity(categoryId: number, province: string): Promise<Restaurant[]> {
+    return this.restaurantsRepository.find({province, categoryId});
   }
 
   findOne(id: number) {

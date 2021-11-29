@@ -1,4 +1,5 @@
 import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
+import { OrdersHasDish } from "src/orders-has-dishes/entities/orders-has-dish.entity";
 import { Order } from "src/orders/entities/order.entity";
 import { Restaurant } from "src/restaurants/entities/restaurant.entity";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
@@ -38,8 +39,12 @@ export class Dish {
   @Field(type => Restaurant )
   restaurant: Restaurant;
 
-  @ManyToMany(() => Order, order => order.dishes)
-  orders: Order[];
+  @ManyToOne(() => OrdersHasDish, orderHasDish => orderHasDish.dishes)
+  @Field(type => OrdersHasDish )
+  orderHasDish: OrdersHasDish;
+
+  // @ManyToMany(() => Order, order => order.dishes)
+  // orders: Order[];
 }
 
 // field{nullable: true} --> if it can be null

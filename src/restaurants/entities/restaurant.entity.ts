@@ -1,6 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Category } from 'src/categories/entities/category.entity';
 import { Dish } from 'src/dishes/entities/dish.entity';
+import { Order } from 'src/orders/entities/order.entity';
 import { Review } from 'src/reviews/entities/review.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
@@ -79,4 +80,7 @@ export class Restaurant {
   @OneToOne(() => User, user => user.restaurant)
   @JoinColumn()
   user: User;
+
+  @OneToOne(() => Order, order => order.restaurant)
+  order: Order;
 }

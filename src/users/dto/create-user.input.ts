@@ -40,4 +40,8 @@ export class CreateUserInput {
   @Field()
   role: string;
 
+  @IsNotEmpty()
+  @IsString()
+  @Field({nullable: true})
+  studentNumber: string;
 }

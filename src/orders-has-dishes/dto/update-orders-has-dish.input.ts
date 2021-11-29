@@ -1,12 +1,12 @@
-import { CreateUserInput } from './create-user.input';
+import { CreateOrdersHasDishInput } from './create-orders-has-dish.input';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 import { IsNotEmpty, IsPositive, IsInt } from 'class-validator';
 
 @InputType()
-export class UpdateUserInput extends PartialType(CreateUserInput) {
+export class UpdateOrdersHasDishInput extends PartialType(CreateOrdersHasDishInput) {
   @IsNotEmpty()
   @IsPositive()
   @IsInt()
-  @Field(type=> Int)
+  @Field()
   id: number;
 }

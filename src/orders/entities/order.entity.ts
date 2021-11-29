@@ -4,6 +4,8 @@ import { Dish } from 'src/dishes/entities/dish.entity';
 import { Payment } from 'src/payments/entities/payment.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { OrdersHasDish } from 'src/orders-has-dishes/entities/orders-has-dish.entity';
+import { Restaurant } from 'src/restaurants/entities/restaurant.entity';
 
 @Entity()
 @ObjectType()
@@ -19,6 +21,10 @@ export class Order {
   @Column()
   @Field(type => Int)
   driverId: number;
+
+  @Column()
+  @Field(type => Int)
+  restaurantId: number;
 
   @Column()
   @Field(type => Int)
@@ -71,22 +77,31 @@ export class Order {
   @Field(type => [Driver])
   drivers: Driver[];
 
-  @ManyToMany(
-    () => Dish, 
-    (dish: Dish) => dish.orders,
-    { eager: true },
-  )
-  @JoinTable({
-    name: 'orders_has_dishes',
-    joinColumn: {
-      name: 'order_id',
-      referencedColumnName: 'id' 
-    },
-    inverseJoinColumn: {
-      name: 'dish_id',
-      referencedColumnName: 'id',
-    },
-  })
-  @Field(() => [Dish])
-  dishes: Dish[];
+  @OneToOne(() => Restaurant, restaurant => restaurant.order)
+  @JoinColumn()
+  restaurant: Restaurant;
+
+  @ManyToOne(() => OrdersHasDish, orderHasDish => orderHasDish.orders)
+  @Field(type => OrdersHasDish)
+  orderHasDish: OrdersHasDish;
+
+
+  // @ManyToMany(
+  //   () => Dish, 
+  //   (dish: Dish) => dish.orders,
+  //   { eager: true },
+  // )
+  // @JoinTable({
+  //   name: 'orders_has_dishes',
+  //   joinColumn: {
+  //     name: 'order_id',
+  //     referencedColumnName: 'id' 
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'dish_id',
+  //     referencedColumnName: 'id',
+  //   },
+  // })
+  // @Field(() => [Dish])
+  // dishes: Dish[];
 }
