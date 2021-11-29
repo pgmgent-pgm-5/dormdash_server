@@ -29,13 +29,21 @@ input CreateOrderInput {
   city: String!
   deliveryFee: Float!
   deliveryState: String!
+  driverId: Int!
   orderNumber: Float!
   orderState: String!
   postalcode: String!
   province: String!
+  restaurantId: Int!
   street: String!
   streetnumber: Float!
   totalPrice: Float!
+  userId: Int!
+}
+
+input CreateOrdersHasDishInput {
+  dishId: Int!
+  orderId: Int!
   userId: Int!
 }
 
@@ -50,7 +58,7 @@ input CreatePaymentInput {
 input CreateRestaurantInput {
   categoryId: Int!
   city: String!
-  deliveryTime: Float!
+  deliveryTime: Int!
   deliveryTimes: String!
   description: String!
   logo: String!
@@ -59,7 +67,7 @@ input CreateRestaurantInput {
   postalcode: String!
   province: String!
   street: String!
-  streetnumber: Float!
+  streetnumber: Int!
   userId: Int!
 }
 
@@ -79,12 +87,14 @@ input CreateUserInput {
   phone: String
   picture: String
   role: String!
+  studentNumber: String
 }
 
 type Dish {
   description: String!
   id: Int!
   name: String!
+  orderHasDish: OrdersHasDish!
   picture: String!
   price: Float!
   quantity: Int!
@@ -103,6 +113,7 @@ type Mutation {
   createDish(createDishInput: CreateDishInput!): Dish!
   createDriver(createDriverInput: CreateDriverInput!): Driver!
   createOrder(createOrderInput: CreateOrderInput!): Order!
+  createOrdersHasDish(createOrdersHasDishInput: CreateOrdersHasDishInput!): OrdersHasDish!
   createPayment(createPaymentInput: CreatePaymentInput!): Payment!
   createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
   createReview(createReviewInput: CreateReviewInput!): Review!
@@ -111,6 +122,7 @@ type Mutation {
   removeDish(id: Int!): Dish!
   removeDriver(id: Int!): Driver!
   removeOrder(id: Int!): Order!
+  removeOrdersHasDish(id: Int!): OrdersHasDish!
   removePayment(id: Int!): Payment!
   removeRestaurant(id: Int!): Restaurant!
   removeReview(id: Int!): Review!
@@ -119,6 +131,7 @@ type Mutation {
   updateDish(updateDishInput: UpdateDishInput!): Dish!
   updateDriver(updateDriverInput: UpdateDriverInput!): Driver!
   updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updateOrdersHasDish(updateOrdersHasDishInput: UpdateOrdersHasDishInput!): OrdersHasDish!
   updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
   updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
   updateReview(updateReviewInput: UpdateReviewInput!): Review!
@@ -129,19 +142,28 @@ type Order {
   city: String!
   deliveryFee: Float!
   deliveryState: String!
-  dishes: [Dish!]!
   driverId: Int!
   drivers: [Driver!]!
   id: Int!
+  orderHasDish: OrdersHasDish!
   orderNumber: Int!
   orderState: String!
   postalcode: String!
   province: String!
+  restaurantId: Int!
   street: String!
   streetnumber: Int!
   totalPrice: Float!
   user: User!
   userId: Int!
+}
+
+type OrdersHasDish {
+  dishId: Int!
+  dishes: [Dish!]
+  id: Int!
+  orderId: Int!
+  orders: [Order!]
 }
 
 type Payment {
@@ -160,18 +182,20 @@ type Query {
   dishes: [Dish!]!
   driver(id: Int!): Driver!
   drivers: [Driver!]!
+  findOneUser(id: Int!): User!
   getDish(id: Int!): Dish!
   getRestaurantById(id: Int!): Restaurant!
   order(id: Int!): Order!
   orders: [Order!]!
+  ordersHasDish(id: Int!): OrdersHasDish!
+  ordersHasDishes: [OrdersHasDish!]!
   payment(id: Int!): Payment!
   payments: [Payment!]!
   restaurants: [Restaurant!]!
-  restaurantsByCategoryAndCity(categoryId: Int!, city: String!): [Restaurant!]!
+  restaurantsByCategoryAndProvince(categoryId: Int!, province: String!): [Restaurant!]!
   restaurantsByProvince(province: String!): [Restaurant!]!
   review(id: Int!): Review!
   reviews: [Review!]!
-  user(id: Int!): User!
   userByEmail(email: String!): User!
   users: [User!]!
 }
@@ -235,14 +259,23 @@ input UpdateOrderInput {
   city: String
   deliveryFee: Float
   deliveryState: String
+  driverId: Int
   id: Float!
   orderNumber: Float
   orderState: String
   postalcode: String
   province: String
+  restaurantId: Int
   street: String
   streetnumber: Float
   totalPrice: Float
+  userId: Int
+}
+
+input UpdateOrdersHasDishInput {
+  dishId: Int
+  id: Float!
+  orderId: Int
   userId: Int
 }
 
@@ -258,7 +291,7 @@ input UpdatePaymentInput {
 input UpdateRestaurantInput {
   categoryId: Int!
   city: String!
-  deliveryTime: Float!
+  deliveryTime: Int!
   deliveryTimes: String!
   description: String!
   id: Float!
@@ -268,7 +301,7 @@ input UpdateRestaurantInput {
   postalcode: String!
   province: String!
   street: String!
-  streetnumber: Float!
+  streetnumber: Int!
   userId: Int!
 }
 
@@ -284,12 +317,13 @@ input UpdateReviewInput {
 input UpdateUserInput {
   email: String
   firstName: String
-  id: Float!
+  id: Int!
   lastName: String
   password: String
   phone: String
   picture: String
   role: String
+  studentNumber: String
 }
 
 type User {
@@ -303,4 +337,5 @@ type User {
   phone: String
   picture: String
   role: String!
+  studentNumber: String
 }

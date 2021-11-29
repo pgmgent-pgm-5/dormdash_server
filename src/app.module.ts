@@ -14,6 +14,7 @@ import { PaymentsModule } from './payments/payments.module';
 import { OrdersModule } from './orders/orders.module';
 import { DriversModule } from './drivers/drivers.module';
 import { AuthModule } from './auth/auth.module';
+import { OrdersHasDishesModule } from './orders-has-dishes/orders-has-dishes.module';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -66,6 +67,7 @@ const nodeEnvironment = `${(
     OrdersModule,
     DriversModule,
     AuthModule,
+    OrdersHasDishesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

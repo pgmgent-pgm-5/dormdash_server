@@ -11,8 +11,9 @@ async function bootstrap() {
     session({
       secret: 'nest dormdash', // get env vars
       resave: false,
+      secure: true,
       saveUninitialized: false,
-      cookie: { maxAge: 360000 },
+      cookie: { maxAge: 36000000 },
     }),
   );
 
@@ -21,6 +22,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'https://dormdash.onrender.com',
+    // origin: 'http://localhost:3001',
     credentials: true,
     allowedHeaders:
       'Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Csrftoken, X-Xsrftoken',

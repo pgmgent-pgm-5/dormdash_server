@@ -39,6 +39,10 @@ export class User {
   @Field()
   role: string;
 
+  @Column({nullable: true})
+  @Field({nullable: true})
+  studentNumber: string;
+
   @OneToMany(() => Payment, payment => payment.user)
   @Field(type => [Payment], { nullable: true })
   payments?: Payment[];

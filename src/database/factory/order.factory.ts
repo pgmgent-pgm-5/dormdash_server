@@ -11,6 +11,7 @@ define(Order, (faker: typeof Faker) => {
   const order = new Order();
   order.userId = faker.random.number({min: 1, max: 100});
   order.driverId = faker.random.number({min: 1, max: 30});
+  order.restaurantId = faker.random.number({min: 1, max: 100});
   order.orderNumber = i;
   order.orderState = orderStates[faker.random.number({min: 0, max: 2})];
   order.deliveryState = deliveryStates[faker.random.number({min: 0, max:2 })];

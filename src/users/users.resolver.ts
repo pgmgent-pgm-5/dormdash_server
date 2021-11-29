@@ -18,8 +18,8 @@ export class UsersResolver {
     return this.usersService.findAll();
   }
 
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => User, { name: 'findOneUser' })
+  findOneUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.findOne(id);
   }
 
