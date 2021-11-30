@@ -62,4 +62,11 @@ export class AppController {
   getHelloWorld(): string {
     return 'hello world';
   }
+
+  @Get('/fuckingget')
+  getFuckingGet(): any {
+    return {
+      message: 'fucking get',
+    };
+  }
 }
