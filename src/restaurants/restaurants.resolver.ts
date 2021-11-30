@@ -42,6 +42,12 @@ export class RestaurantsResolver {
     return this.restaurantsService.findOne(id);
   }
 
+  @Query(() => Restaurant)
+  getRestaurantByUserId(@Args('userId', { type: () => Int }) userId: number) {
+    console.log(userId);
+    return this.restaurantsService.findOneByUserId(userId);
+  }
+
   @ResolveField(returns => [Dish])
   dishes(@Parent() restaurant: Restaurant): Promise<Dish[]> {
     console.log(restaurant);

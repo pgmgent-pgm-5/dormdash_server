@@ -47,6 +47,11 @@ export class RestaurantsService {
     return this.restaurantsRepository.findOneOrFail(id);
   }
 
+  findOneByUserId(userId: number) {
+    return this.restaurantsRepository.findOneOrFail({userId});
+  }
+
+
   getRestaurantsDishes(restaurantId: number): Promise<Dish[]> {
     return this.dishesService.findAllByRestaurant(restaurantId);
   }
