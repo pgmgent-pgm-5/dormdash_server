@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
 import { OrdersService } from './orders.service';
 import { Order } from './entities/order.entity';
 import { CreateOrderInput } from './dto/create-order.input';
 import { UpdateOrderInput } from './dto/update-order.input';
+import { User } from 'src/users/entities/user.entity';
 
 @Resolver(() => Order)
 export class OrdersResolver {
@@ -16,6 +17,16 @@ export class OrdersResolver {
   @Query(() => [Order], { name: 'orders' })
   findAll() {
     return this.ordersService.findAll();
+  }
+
+  @Query(() => [Order], { name: 'findAllOrdersByRestaurantId' })
+  findAllByRestaurantId(@Args('restaurantId', {type: () => Int}) restaurantId: number) {
+    return this.ordersService.findAllByRestaurantId(restaurantId);
+  }
+
+  @ResolveField(returns => User)
+  user(@Parent() order: Order): Promise<User> {
+    return this.ordersService.getOrderUser(order.userId);
   }
 
   @Query(() => Order, { name: 'order' })

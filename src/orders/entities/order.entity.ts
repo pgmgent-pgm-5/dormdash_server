@@ -73,17 +73,17 @@ export class Order {
   @Field(type => User)
   user: User;
 
-  @OneToMany(() => Driver, driver => driver.order)
-  @Field(type => [Driver])
-  drivers: Driver[];
+  @ManyToOne(() => Driver, driver => driver.orders)
+  @Field(type => Driver)
+  driver: Driver;
 
-  @OneToOne(() => Restaurant, restaurant => restaurant.order)
-  @JoinColumn()
+  @ManyToOne(() => Restaurant, restaurant => restaurant.orders)
+  @Field(type => Restaurant)
   restaurant: Restaurant;
 
-  @ManyToOne(() => OrdersHasDish, orderHasDish => orderHasDish.orders)
-  @Field(type => OrdersHasDish)
-  orderHasDish: OrdersHasDish;
+  @OneToMany(() => OrdersHasDish, orderHasDish => orderHasDish.order)
+  @Field(type => [OrdersHasDish], { nullable: true })
+  orderHasDishes?: OrdersHasDish[];
 
 
   // @ManyToMany(
