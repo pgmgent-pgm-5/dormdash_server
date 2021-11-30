@@ -2,7 +2,8 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Order } from 'src/orders/entities/order.entity';
 import { Payment } from 'src/payments/entities/payment.entity';
 import { Restaurant } from 'src/restaurants/entities/restaurant.entity';
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Entity()
 @ObjectType()
@@ -53,4 +54,10 @@ export class User {
 
   @OneToOne(() => Restaurant)
   restaurant: Restaurant;
+
+  @BeforeInsert()
+  async securePassword(password: string) {
+    const salt = await bcrypt.genSalt();
+    this.password = await bcrypt.hash(password || this.password, salt);
+  }
 }

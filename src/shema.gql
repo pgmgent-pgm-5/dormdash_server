@@ -94,7 +94,7 @@ type Dish {
   description: String!
   id: Int!
   name: String!
-  orderHasDish: OrdersHasDish!
+  orderHasDishes: [OrdersHasDish!]
   picture: String!
   price: Float!
   quantity: Int!
@@ -105,7 +105,7 @@ type Dish {
 type Driver {
   available: Boolean!
   id: Int!
-  order: Order!
+  orders: [Order!]
 }
 
 type Mutation {
@@ -142,14 +142,15 @@ type Order {
   city: String!
   deliveryFee: Float!
   deliveryState: String!
+  driver: Driver!
   driverId: Int!
-  drivers: [Driver!]!
   id: Int!
-  orderHasDish: OrdersHasDish!
+  orderHasDishes: [OrdersHasDish!]
   orderNumber: Int!
   orderState: String!
   postalcode: String!
   province: String!
+  restaurant: Restaurant!
   restaurantId: Int!
   street: String!
   streetnumber: Int!
@@ -159,11 +160,11 @@ type Order {
 }
 
 type OrdersHasDish {
+  dish: Dish!
   dishId: Int!
-  dishes: [Dish!]
   id: Int!
+  order: Order!
   orderId: Int!
-  orders: [Order!]
 }
 
 type Payment {
@@ -182,9 +183,11 @@ type Query {
   dishes: [Dish!]!
   driver(id: Int!): Driver!
   drivers: [Driver!]!
+  findAllOrdersByRestaurantId(restaurantId: Int!): [Order!]!
   findOneUser(id: Int!): User!
   getDish(id: Int!): Dish!
   getRestaurantById(id: Int!): Restaurant!
+  getRestaurantByUserId(userId: Int!): Restaurant!
   order(id: Int!): Order!
   orders: [Order!]!
   ordersHasDish(id: Int!): OrdersHasDish!
@@ -211,6 +214,7 @@ type Restaurant {
   id: Int!
   logo: String!
   name: String!
+  orders: [Order!]
   picture: String!
   postalcode: String!
   province: String!
@@ -289,20 +293,20 @@ input UpdatePaymentInput {
 }
 
 input UpdateRestaurantInput {
-  categoryId: Int!
-  city: String!
-  deliveryTime: Int!
-  deliveryTimes: String!
-  description: String!
-  id: Float!
-  logo: String!
-  name: String!
-  picture: String!
-  postalcode: String!
-  province: String!
-  street: String!
-  streetnumber: Int!
-  userId: Int!
+  categoryId: Int
+  city: String
+  deliveryTime: Int
+  deliveryTimes: String
+  description: String
+  id: Int!
+  logo: String
+  name: String
+  picture: String
+  postalcode: String
+  province: String
+  street: String
+  streetnumber: Int
+  userId: Int
 }
 
 input UpdateReviewInput {

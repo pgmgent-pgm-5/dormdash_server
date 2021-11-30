@@ -2,7 +2,7 @@ import { Field, Float, Int, ObjectType } from "@nestjs/graphql";
 import { OrdersHasDish } from "src/orders-has-dishes/entities/orders-has-dish.entity";
 import { Order } from "src/orders/entities/order.entity";
 import { Restaurant } from "src/restaurants/entities/restaurant.entity";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 @ObjectType()
@@ -39,9 +39,9 @@ export class Dish {
   @Field(type => Restaurant )
   restaurant: Restaurant;
 
-  @ManyToOne(() => OrdersHasDish, orderHasDish => orderHasDish.dishes)
-  @Field(type => OrdersHasDish )
-  orderHasDish: OrdersHasDish;
+  @OneToMany(() => OrdersHasDish, orderHasDish => orderHasDish.dish)
+  @Field(type => [OrdersHasDish], { nullable: true})
+  orderHasDishes?: OrdersHasDish[];
 
   // @ManyToMany(() => Order, order => order.dishes)
   // orders: Order[];

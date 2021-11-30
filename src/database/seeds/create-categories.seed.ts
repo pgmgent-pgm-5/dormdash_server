@@ -19,6 +19,6 @@ export default class CreateCategories implements Seeder {
  * 5) Reviews
  * 6) Drivers
  * 7) Orders
- * 7) OrdersHasDish
+ * 7) OrderHasDishes 
  * 8) Payments
  */

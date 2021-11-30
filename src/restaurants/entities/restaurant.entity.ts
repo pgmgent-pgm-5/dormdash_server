@@ -81,6 +81,7 @@ export class Restaurant {
   @JoinColumn()
   user: User;
 
-  @OneToOne(() => Order, order => order.restaurant)
-  order: Order;
+  @OneToMany(() => Order, order => order.restaurant)
+  @Field(type => [Order], { nullable: true})
+  orders?: Order[];
 }
