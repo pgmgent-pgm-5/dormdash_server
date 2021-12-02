@@ -6,8 +6,10 @@ import { UsersService } from './users/users.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService,
-    private usersService: UsersService) {}
+  constructor(
+    private readonly appService: AppService,
+    private usersService: UsersService,
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -30,7 +32,9 @@ export class AppController {
 
   @Post('signup')
   async signup(@Request() req): Promise<any> {
-    let { firstName, lastName, email, phone, password, role, studentNumber } = req.body;
+    console.log(req);
+    let { firstName, lastName, email, phone, password, role, studentNumber } =
+      req.body;
     const createdUser = this.usersService.create({
       firstName,
       lastName,
@@ -51,7 +55,7 @@ export class AppController {
         return error;
       }
     });
-    return { message: 'logged out!'}
+    return { message: 'logged out!' };
   }
 
   @Get('/')
