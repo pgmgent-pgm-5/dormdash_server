@@ -12,7 +12,7 @@ export class UsersService {
   create(createUserInput: CreateUserInput):Promise<User> {
     const newUser = this.usersRepository.create(createUserInput); 
 
-    return this.usersRepository.save(newUser);  // insert 
+    return this.usersRepository.save(newUser); 
   }
 
   findAll():Promise<User[]> {
@@ -20,11 +20,6 @@ export class UsersService {
   }
 
   async findOneByEmail(email: string): Promise<User | undefined> {
-    // console.log('emailservice', email);
-    // let user = await this.usersRepository.find({ where: { email: email }});
-    // console.log('useruserservice', user);
-    // const test = user[0];
-    // return test;
     return this.usersRepository.findOne({ email });
   }
 

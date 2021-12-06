@@ -11,7 +11,6 @@ define(Dish, (faker: typeof Faker) => {
   dish.description = faker.lorem.paragraph();
   dish.picture = 'default_dish.jpeg';
   dish.price = faker.random.number({min: 3, max:100, precision:0.01 });
-  // dish.price = faker.random.number({min: 1, max:1000});
   dish.quantity = faker.random.number({min: 1, max: 1000});
 
   return dish;

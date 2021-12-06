@@ -30,7 +30,6 @@ export class OrdersService {
 
   getOrderUser(userId: number):Promise<User> {
     const id = userId;
-    console.log(id);
     return this.usersRepository.findOne(id);
   }
 

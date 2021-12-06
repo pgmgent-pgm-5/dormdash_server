@@ -20,17 +20,6 @@ export class DishesResolver {
     return this.dishesService.findAll();
   }
 
-  // @Query(returns => [Menu])
-  // menusByRestaurant(@Args('restaurantId', {type: () => Int}) restaurantId: number): Promise<Menu[]> {
-  //   return this.menusService.findAllByRestaurant(restaurantId);
-  // }
-
-  // @ResolveField(returns => Restaurant)
-  // restaurant(@Parent() menu: Menu): Promise<Restaurant> {
-  //   console.log("etessfsd")
-  //   return this.menusService.getRestaurant(menu.restaurantId);
-  // }
-
   @Mutation(returns => Dish)
   createDish(@Args('createDishInput') createDishInput: CreateDishInput): Promise<Dish> {
     return this.dishesService.createDish(createDishInput);

@@ -20,8 +20,6 @@ export class RestaurantsService {
     private reviewsService: ReviewsService
   ) {}
   
-  // constructor(@InjectRepository(Restaurant) private restaurantsRepository: Repository<Restaurant>){}
-  
   create(createRestaurantInput: CreateRestaurantInput): Promise<Restaurant> {
     const newRestaurant = this.restaurantsRepository.create(createRestaurantInput);
     return this.restaurantsRepository.save(newRestaurant);

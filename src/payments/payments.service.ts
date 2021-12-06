@@ -12,7 +12,7 @@ export class PaymentsService {
   create(createPaymentInput: CreatePaymentInput):Promise<Payment> {
     const newPayment = this.paymentsRepository.create(createPaymentInput); 
 
-    return this.paymentsRepository.save(newPayment);  // insert 
+    return this.paymentsRepository.save(newPayment); 
   }
 
   findAll():Promise<Payment[]> {

@@ -21,7 +21,6 @@ export class CreateUserInput {
 
   @IsNotEmpty()
   @IsString()
-  // @IsJWT()
   @Field()
   password: string;
 

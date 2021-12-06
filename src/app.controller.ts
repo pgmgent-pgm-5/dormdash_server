@@ -69,7 +69,6 @@ export class AppController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Request() req): any {
-    console.log(req.user);
     return { id: req.user.id, email: req.user.email, role: req.user.role };
   }
 
@@ -87,7 +86,6 @@ export class AppController {
 
   @Post('signup')
   async signup(@Request() req): Promise<any> {
-    console.log(req);
     let { firstName, lastName, email, phone, password, role, studentNumber, picture } =
       req.body;
     const createdUser = this.usersService.create({
@@ -123,7 +121,6 @@ export class AppController {
   @Post('uploadLogo')
   @UseInterceptors(FileInterceptor('file', storage))
   uploadLogoImage(@UploadedFile() file, @Request() req): Observable<Object>{
-    console.log(file);
     return of({imagePath: file.filename});
   }
 
@@ -131,7 +128,6 @@ export class AppController {
   @Post('uploadDishPicture')
   @UseInterceptors(FileInterceptor('file', storageDishPicture))
   uploadDishPicture(@UploadedFile() file, @Request() req): Observable<Object>{
-    console.log(file);
     return of({imagePath: file.filename});
   }
 
@@ -139,7 +135,6 @@ export class AppController {
   @Post('uploadRestaurantPicture')
   @UseInterceptors(FileInterceptor('file', storageRestaurantPicture))
   uploadRestaurantPicture(@UploadedFile() file, @Request() req): Observable<Object>{
-    console.log(file);
     return of({imagePath: file.filename});
   }
 
@@ -147,7 +142,6 @@ export class AppController {
   @Post('uploadProfilePicture')
   @UseInterceptors(FileInterceptor('file', storageProfilePicture))
   uploadProfilePicture(@UploadedFile() file, @Request() req): Observable<Object>{
-    console.log(file);
     return of({imagePath: file.filename});
   }
 

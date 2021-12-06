@@ -84,24 +84,4 @@ export class Order {
   @OneToMany(() => OrdersHasDish, orderHasDish => orderHasDish.order)
   @Field(type => [OrdersHasDish], { nullable: true })
   orderHasDishes?: OrdersHasDish[];
-
-
-  // @ManyToMany(
-  //   () => Dish, 
-  //   (dish: Dish) => dish.orders,
-  //   { eager: true },
-  // )
-  // @JoinTable({
-  //   name: 'orders_has_dishes',
-  //   joinColumn: {
-  //     name: 'order_id',
-  //     referencedColumnName: 'id' 
-  //   },
-  //   inverseJoinColumn: {
-  //     name: 'dish_id',
-  //     referencedColumnName: 'id',
-  //   },
-  // })
-  // @Field(() => [Dish])
-  // dishes: Dish[];
 }

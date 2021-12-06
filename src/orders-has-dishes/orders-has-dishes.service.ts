@@ -12,7 +12,7 @@ export class OrdersHasDishesService {
   create(createOrdersHasDishInput: CreateOrdersHasDishInput):Promise<OrdersHasDish> {
     const newUser = this.ordersHasDishRepository.create(createOrdersHasDishInput); 
 
-    return this.ordersHasDishRepository.save(newUser);  // insert 
+    return this.ordersHasDishRepository.save(newUser); 
   }
 
   findAll():Promise<OrdersHasDish[]> {

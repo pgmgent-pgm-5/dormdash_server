@@ -38,19 +38,16 @@ export class RestaurantsResolver {
 
   @Query(() => Restaurant)
   getRestaurantById(@Args('id', { type: () => Int }) id: number) {
-    console.log(id);
     return this.restaurantsService.findOne(id);
   }
 
   @Query(() => Restaurant)
   getRestaurantByUserId(@Args('userId', { type: () => Int }) userId: number) {
-    console.log(userId);
     return this.restaurantsService.findOneByUserId(userId);
   }
 
   @ResolveField(returns => [Dish])
   dishes(@Parent() restaurant: Restaurant): Promise<Dish[]> {
-    console.log(restaurant);
     return this.restaurantsService.getRestaurantsDishes(restaurant.id);
   }
 
@@ -61,7 +58,6 @@ export class RestaurantsResolver {
 
   @ResolveField(returns => Category)
   category(@Parent() restaurant: Restaurant): Promise<Category> {
-    console.log(restaurant);
     return this.restaurantsService.getRestaurantCategory(restaurant.categoryId);
   }
   
