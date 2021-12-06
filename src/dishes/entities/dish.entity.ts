@@ -42,9 +42,4 @@ export class Dish {
   @OneToMany(() => OrdersHasDish, orderHasDish => orderHasDish.dish)
   @Field(type => [OrdersHasDish], { nullable: true})
   orderHasDishes?: OrdersHasDish[];
-
-  // @ManyToMany(() => Order, order => order.dishes)
-  // orders: Order[];
 }
-
-// field{nullable: true} --> if it can be null

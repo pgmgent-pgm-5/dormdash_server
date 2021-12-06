@@ -12,7 +12,7 @@ export class DriversService {
   create(createDriverInput: CreateDriverInput):Promise<Driver> {
     const newDriver = this.driversRepository.create(createDriverInput); 
 
-    return this.driversRepository.save(newDriver);  // insert 
+    return this.driversRepository.save(newDriver);  
   }
 
   findAll():Promise<Driver[]> {
