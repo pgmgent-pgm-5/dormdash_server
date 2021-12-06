@@ -9,6 +9,6 @@ define(OrdersHasDish, (faker: typeof Faker) => {
   const orderHasDish = new OrdersHasDish();
   orderHasDish.orderId = faker.random.number({min: 1, max:100});
   orderHasDish.dishId = faker.random.number({min: 1, max:200});
-
+  orderHasDish.quantity = faker.random.number({min: 1, max:10});
   return orderHasDish;
 })

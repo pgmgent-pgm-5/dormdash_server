@@ -26,7 +26,7 @@ export class CreateOrderInput {
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
-  @Field()
+  @Field(type => Int)
   orderNumber: number;
 
   @IsNotEmpty()
@@ -64,7 +64,7 @@ export class CreateOrderInput {
   @IsNotEmpty()
   @IsInt()
   @IsPositive()
-  @Field()
+  @Field(type => Int)
   streetnumber: number;
 
   @IsNotEmpty()
@@ -81,10 +81,6 @@ export class CreateOrderInput {
   @IsAlpha()
   @Field()
   province: string;
-
-  selectedDishes: [Dish];
-
-
 }
 
 

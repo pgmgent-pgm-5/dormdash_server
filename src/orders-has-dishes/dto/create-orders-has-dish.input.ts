@@ -7,12 +7,6 @@ export class CreateOrdersHasDishInput {
   @IsInt()
   @IsPositive()
   @Field(type => Int)
-  userId: number;
-
-  @IsNotEmpty()
-  @IsInt()
-  @IsPositive()
-  @Field(type => Int)
   orderId: number;
 
   @IsNotEmpty()
@@ -20,4 +14,10 @@ export class CreateOrdersHasDishInput {
   @IsPositive()
   @Field(type => Int)
   dishId: number;
+
+  @IsNotEmpty()
+  @IsInt()
+  @IsPositive()
+  @Field(type => Int)
+  quantity: number; 
 }

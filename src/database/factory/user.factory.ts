@@ -9,9 +9,9 @@ define(User, (faker: typeof Faker) => {
   user.firstName = faker.name.firstName();
   user.lastName = faker.name.lastName();
   user.email = faker.internet.email();
-  user.password = faker.random.word();
+  user.password = "wachtwoord";
   user.phone = faker.phone.phoneNumber();
-  user.picture = 'default_profile.png';
+  user.picture = 'default_profile.jpeg';
   user.role = roles[faker.random.number({min: 0, max: 2})];
   return user;
 });
