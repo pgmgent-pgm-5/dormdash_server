@@ -26,7 +26,7 @@ export class CreateUserInput {
   password: string;
 
   @IsOptional()
-  @IsMobilePhone()
+  @IsMobilePhone('en-CA')
   @Field({nullable: true})
   phone?: string;
 

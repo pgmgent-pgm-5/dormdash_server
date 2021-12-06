@@ -11,7 +11,7 @@ export default class CreateCategories implements Seeder {
 
 /**
  * Order seeding 
- * yarn seed: run -s CreateUsers
+ * yarn seed:run -s CreateUsers
  * 1) Users
  * 2) Categories
  * 3) Restaurants

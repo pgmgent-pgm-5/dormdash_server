@@ -30,13 +30,13 @@ input CreateOrderInput {
   deliveryFee: Float!
   deliveryState: String!
   driverId: Int!
-  orderNumber: Float!
+  orderNumber: Int!
   orderState: String!
   postalcode: String!
   province: String!
   restaurantId: Int!
   street: String!
-  streetnumber: Float!
+  streetnumber: Int!
   totalPrice: Float!
   userId: Int!
 }
@@ -44,13 +44,13 @@ input CreateOrderInput {
 input CreateOrdersHasDishInput {
   dishId: Int!
   orderId: Int!
-  userId: Int!
+  quantity: Int!
 }
 
 input CreatePaymentInput {
   orderId: Int!
   paidDate: Timestamp!
-  payment_type: String!
+  paymentType: String!
   price: Float!
   userId: Int!
 }
@@ -165,6 +165,7 @@ type OrdersHasDish {
   id: Int!
   order: Order!
   orderId: Int!
+  quantity: Int!
 }
 
 type Payment {
@@ -265,13 +266,13 @@ input UpdateOrderInput {
   deliveryState: String
   driverId: Int
   id: Float!
-  orderNumber: Float
+  orderNumber: Int
   orderState: String
   postalcode: String
   province: String
   restaurantId: Int
   street: String
-  streetnumber: Float
+  streetnumber: Int
   totalPrice: Float
   userId: Int
 }
@@ -280,14 +281,14 @@ input UpdateOrdersHasDishInput {
   dishId: Int
   id: Float!
   orderId: Int
-  userId: Int
+  quantity: Int
 }
 
 input UpdatePaymentInput {
   id: Float!
   orderId: Int
   paidDate: Timestamp
-  payment_type: String
+  paymentType: String
   price: Float
   userId: Int
 }

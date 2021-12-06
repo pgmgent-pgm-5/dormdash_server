@@ -18,6 +18,10 @@ export class OrdersHasDish {
   @Field(type => Int)
   dishId: number;  
 
+  @Column()
+  @Field(type => Int)
+  quantity: number; 
+
   @ManyToOne(() => Order, order => order.orderHasDishes)
   @Field(type => Order)
   order: Order;

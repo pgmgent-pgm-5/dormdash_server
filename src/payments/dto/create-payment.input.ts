@@ -18,7 +18,7 @@ export class CreatePaymentInput {
   @IsNotEmpty()
   @IsString()
   @Field()
-  payment_type: string;
+  paymentType: string;
 
   @IsNotEmpty()
   // @IsCurrency()
