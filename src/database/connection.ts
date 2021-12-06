@@ -33,7 +33,7 @@ const typeormConfig: ConnectionOptions = {
   ssl: true,
 };
 
-// important to work with CLI.
+// important to work with CLI
 module.exports = {
   ...typeormConfig,
   seeds: [__dirname + '/../database/**/*.seed{.ts,.js}'],
