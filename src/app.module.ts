@@ -49,7 +49,8 @@ const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()
         factories: [__dirname + '**/*.factory{.ts,.js}'],
         synchronize: true,
         logging: nodeEnvironment === 'development' ? true : false,
-        dropSchema: nodeEnvironment === 'test' ? true : false
+        dropSchema: nodeEnvironment === 'test' ? true : false,
+        ssl: { rejectUnauthorized: false }
       }),
     }),
     DishesModule,

@@ -6,15 +6,16 @@ const nodeEnvironment = `${(process.env.NODE_ENV || 'development').toLowerCase()
 
 const typeormConfig: ConnectionOptions = {
   type: 'postgres',
-  host: 'localhost',
+  host: 'ec2-176-34-211-0.eu-west-1.compute.amazonaws.com',
   port: 5432,
-  username: 'jamsy',
-  password: 'jamsy',
-  database: 'dormdash',
+  username: 'kgxdduiaxdbszz',
+  password: 'e876c9082f8aa24bceec14f96c4123337476ea9b2e9032e3713f219a4426064c',
+  database: 'deq0nh04fturto',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true,
   logging: nodeEnvironment === 'development' ? true : false,
   dropSchema: nodeEnvironment === 'test' ? true : false,
+  ssl: { rejectUnauthorized: false }
 };
 
 // important to work with CLI.
