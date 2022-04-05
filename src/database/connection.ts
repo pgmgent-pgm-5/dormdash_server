@@ -6,26 +6,13 @@ const nodeEnvironment = `${(
   process.env.NODE_ENV || 'development'
 ).toLowerCase()}`;
 
-// const typeormConfig: ConnectionOptions = {
-//   type: 'postgres',
-//   host: 'localhost',
-//   port: 5432,
-//   username: 'jamsy',
-//   password: 'jamsy',
-//   database: 'dormdash',
-//   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-//   synchronize: true,
-//   logging: nodeEnvironment === 'development' ? true : false,
-//   dropSchema: nodeEnvironment === 'test' ? true : false,
-// };
-
 const typeormConfig: ConnectionOptions = {
   type: 'postgres',
-  host: 'ec2-176-34-211-0.eu-west-1.compute.amazonaws.com',
-  port: 5432,
-  username: 'kgxdduiaxdbszz',
-  password: 'e876c9082f8aa24bceec14f96c4123337476ea9b2e9032e3713f219a4426064c',
-  database: 'deq0nh04fturto',
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true,
   logging: nodeEnvironment === 'development' ? true : false,
